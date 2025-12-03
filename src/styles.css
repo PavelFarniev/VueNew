@@ -1,0 +1,422 @@
+/* ==========================================================
+   GLOBAL RESET / BASE STYLES
+   ========================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f5f7fa;
+    color: #1f2937;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================
+   TYPOGRAPHY
+   ========================================================== */
+
+h1, h2, h3, h4 {
+    color: #111827;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+}
+
+p {
+    color: #374151;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* ==========================================================
+   BUTTONS — modern & consistent
+   ========================================================== */
+
+button {
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    background: #4f46e5;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+button:hover {
+    background: #4338ca;
+    transform: translateY(-1px);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+button.secondary {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+button.secondary:hover {
+    background: #e5e7eb;
+}
+
+/* ==========================================================
+   INPUTS & FORMS
+   ========================================================== */
+
+input[type="text"],
+input[type="search"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+    width: 100%;
+    max-width: 320px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
+    background: white;
+    font-size: 15px;
+    transition: 0.2s;
+    font-family: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.25);
+}
+
+input[type="color"] {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    padding: 0;
+    border: 2px solid #d1d5db;
+    cursor: pointer;
+    background: transparent;
+}
+
+/* ==========================================================
+   APP SPECIFIC COMPONENTS
+   ========================================================== */
+
+/* Палитры */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+    align-items: flex-end;
+}
+
+.control {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.control label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4b5563;
+}
+
+.palette-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 24px 0;
+}
+
+/* Карточки цветов */
+.color-wrapper {
+    width: 150px;
+}
+
+.swatch {
+    height: 96px;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 8px;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.swatch:hover {
+    transform: scale(1.03);
+}
+
+.pin-btn {
+    background: rgba(255,255,255,0.3);
+    border: none;
+    border-radius: 8px;
+    padding: 4px 6px;
+    cursor: pointer;
+    font-size: 14px;
+    backdrop-filter: blur(4px);
+}
+
+.copied {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    background: rgba(0,0,0,0.45);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+    font-size: 13px;
+}
+
+/* Библиотека палитр */
+.palette-card {
+    border: 1px solid #e5e7eb;
+    padding: 16px;
+    margin: 16px 0;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s;
+}
+
+.palette-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.palette-card .colors {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.palette-card .sw {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    flex-shrink: 0;
+}
+
+.palette-card .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* Выпадающее меню экспорта */
+.export-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.export-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    min-width: 160px;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.export-dropdown:hover .export-menu {
+    display: flex;
+}
+
+.export-menu button {
+    padding: 10px 14px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #374151;
+}
+
+.export-menu button:hover {
+    background: #f5f5f5;
+}
+
+/* Accessibility Checker */
+.pair {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.pair .swatches {
+    display: flex;
+    gap: 4px;
+}
+
+.pair .sw {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.pair .info {
+    font-family: monospace;
+    font-size: 13px;
+}
+
+/* Предпросмотр */
+.preview {
+    margin-top: 24px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+}
+
+.preview.dark {
+    background: #111;
+    color: #eee;
+    border-color: #222;
+}
+
+.preview h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.mockup {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    min-width: 100px;
+}
+
+.card {
+    padding: 16px;
+    border-radius: 10px;
+    background: transparent;
+    border: 2px solid #ddd;
+    flex: 1;
+    min-width: 250px;
+}
+
+.card h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .control {
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="search"],
+    input[type="number"],
+    select {
+        max-width: 100%;
+    }
+
+    .palette-row {
+        justify-content: center;
+    }
+
+    .export-menu {
+        right: auto;
+        left: 0;
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    .color-wrapper {
+        width: 130px;
+    }
+}
